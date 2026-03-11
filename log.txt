@@ -8,3 +8,6 @@ FLUSH PRIVILEGES;
 EXIT;
 
 
+npm install marked
+
+php artisan migrate

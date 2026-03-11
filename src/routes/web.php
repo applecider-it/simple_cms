@@ -11,10 +11,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DevelopmentController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+
+// 投稿
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 
 Route::middleware('auth')->group(function () {
     // 認証必須
