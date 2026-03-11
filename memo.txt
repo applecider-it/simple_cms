@@ -1,0 +1,141 @@
+
+cd /home/owner/workspace/tmp/simple_cms/src
+
+cd /home/owner/workspace/tmp/simple_cms
+
+-----------------------------------
+
+port
+
+laravel: 8000
+vite: 5173
+
+
+-----------------------------------
+
+開発サーバーを起動
+
+-------
+
+laravel
+
+foreman start
+
+ログクリア
+
+echo "" > ./storage/logs/laravel.log
+
+--
+
+個別
+
+php artisan serve
+
+npm run dev
+
+tail -f ./storage/logs/laravel.log
+
+--
+
+ビルドして実行
+
+npm run build
+
+php artisan serve
+
+
+-----------------------------------
+
+http://localhost:8000/
+
+test@localhost.com / testtest
+
+test2@localhost.com / test2test2
+
+http://localhost:8000/admin_secrettext/dashboard
+
+admin@localhost.com / adminadmin
+
+---
+
+管理者作成
+
+php artisan tinker
+
+App\Models\AdminUser::create(
+  [
+    'name' => 'admin',
+    'email' => 'admin@localhost.com',
+    'password' => Hash::make('adminadmin'),
+  ]
+);
+
+-----------------------------------
+
+ルート一覧
+
+php artisan route:list
+
+-----------------------------------
+
+メールキャッチャー
+
+
+dockerデスクトップ起動
+
+docker run -d --name mailhog -p 1025:1025 -p 8025:8025 mailhog/mailhog
+
+一度作った後は、Docker Desktopから起動できる
+
+
+状態確認
+docker ps -a
+
+再起動
+docker start mailhog
+
+
+http://localhost:8025/
+
+
+確認方法
+
+php artisan tinker
+
+Mail::raw('MailHog テスト', function($m){
+    $m->to('test@example.com')->subject('MailHog from WSL');
+});
+
+-----------------------------------
+
+その他のコマンド
+
+
+ミドルウェアのトレース
+
+php artisan app:trace-middleware
+
+php artisan app:trace-middleware --uri=/api/development/chat_callback_test --method=POST
+
+-----------------------------------
+
+ログ
+
+標準出力にするとき
+
+.env
+
+LOG_CHANNEL=stderr
+
+-----------------------------------
+
+画像
+
+
+リンク作成
+
+
+php artisan storage:link
+
+
+

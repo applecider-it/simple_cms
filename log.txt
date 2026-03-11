@@ -1,0 +1,10 @@
+
+
+sudo mysql -u root -p
+CREATE DATABASE simple_cms;
+CREATE USER 'simple_cms_user'@'localhost' IDENTIFIED BY 'secret1234';
+GRANT ALL PRIVILEGES ON simple_cms.* TO 'simple_cms_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+
+

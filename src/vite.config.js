@@ -1,0 +1,26 @@
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
+import vue from '@vitejs/plugin-vue';
+import path from 'path';
+
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: [
+                "resources/css/app.css",
+                "resources/css/admin.css",
+
+                "resources/js/entrypoints/app.ts",
+
+                "resources/js/entrypoints/admin/app.ts",
+            ],
+            refresh: true,
+        }),
+        vue(),
+    ],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'resources/js'),
+        },
+    },
+});
